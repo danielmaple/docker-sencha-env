@@ -3,9 +3,12 @@
 FROM danielmaple/node-env:latest
 MAINTAINER Daniel Maple <danielm@ibcos.co.uk>
 
+ENV SENCHA_CMD_VERSION 6.2.0
+ENV SENCHA_CMD_INSTALL_DIR $(SENCHA_CMD_VERSION).103
+
 ## Install sencha cmd
 # Download the compressed sencha cmd archive
-RUN curl -o /tmp/sencha-cmd.run.zip http://cdn.sencha.com/cmd/6.1.3/no-jre/SenchaCmd-6.1.3-linux-amd64.sh.zip && \
+RUN curl -o /tmp/sencha-cmd.run.zip http://cdn.sencha.com/cmd/${SENCHA_CMD_VERSION}/no-jre/SenchaCmd-${SENCHA_CMD_VERSION}-linux-amd64.sh.zip && \
     # Extract the archive
     unzip -p /tmp/sencha-cmd.run.zip > /tmp/sencha-cmd.run && \
     # Grant execution permissions to extracted file
@@ -16,4 +19,4 @@ RUN curl -o /tmp/sencha-cmd.run.zip http://cdn.sencha.com/cmd/6.1.3/no-jre/Sench
     rm /tmp/sencha-cmd.run.zip /tmp/sencha-cmd.run
 
 # Add sencha to PATH
-ENV PATH /root/bin/Sencha/Cmd/6.1.3.42:$PATH
+ENV PATH /root/bin/Sencha/Cmd/${SENCHA_CMD_INSTALL_DIR}:$PATH
