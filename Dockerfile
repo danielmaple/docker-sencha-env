@@ -20,3 +20,6 @@ RUN curl -o /tmp/sencha-cmd.run.zip http://cdn.sencha.com/cmd/${SENCHA_CMD_VERSI
 
 # Add sencha to PATH
 ENV PATH /root/bin/Sencha/Cmd:$PATH
+
+# Install gulp task runner
+RUN npm install -g gulp-cli
